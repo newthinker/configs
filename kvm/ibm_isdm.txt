@@ -1,0 +1,30 @@
+1.远程登录：rdesktop -f 9.181.159.73
+
+2.用户自助服务页面
+https://192.168.80.103:9443/SimpleSRM
+PMRDPCAUSR
+maxadmin
+
+3. 管理页面
+https://192.168.80.103:9443/maximo
+maxadmin
+password
+
+
+* vCenter
+192.168.80.101
+administrator
+passw0rd
+
+* vm client 
+	C:\Program Files\VMware\Infrastructure\Virtual Infrastructure Client\Launcher\VpxClient.exe
+
+
+管理－－－服务－－－日志
+
+
+ISDM(IBM Service Delivery Manager)－－提供实施云计算服务管理所需的所有软件组件。ISDM提供了对于Cloud模型必不可少的预安装功能。
+ISDM使用以下软件：
+   Tivoli Service Automation Manager:协助进行IT架构(由硬件服务器、网络、OS、中间件和应用级软件构成)的自动化供应、管理以及取消供应。
+   IBM Tivoli Monitoring：监视并管理系统和网络应用程序，跟踪企业系统的可用性和性能，并提供报告来跟踪趋势并对问题进行故障诊断。
+   IBM Tivoli Usage and Accounting Manager：帮组度量服务使用情况数据，TSAM实例化并管理服务实例，它能够跟踪服务实例本身的创建、修改和删除以及分配该实例的容量，这些信息可以定时抽取并变换成所谓的CSR公共服务器资源文件，然后IBM Tivoli Usage and Accounting Manager可以检索CSR文件生成报告。
