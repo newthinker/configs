@@ -7,3 +7,4 @@
 <div><li>repos:</li>
         RHEL/Centos等的源配置文件；</div>
 <div><li>samba: 配置SAMBA服务的配置文件；</li></div>
+<div><li>git:git全局配置文件；</li></div>
