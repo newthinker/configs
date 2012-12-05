@@ -1,4 +1,4 @@
-这是我系统的配置文件备份，包括一下几类：
+<p>这是我系统的配置文件备份，包括一下几类：</p>
 1.kvm: 在RHEL5中安装kvm进行管理的一些尝试；
      -KVMWINServer2008-AGS2010.xml: 使用kvm进行管理的一个winserver2008虚拟机的系统配置文件
      -lvm-kvm-snapshot.sh: 创建kvm快照的脚本文件；
