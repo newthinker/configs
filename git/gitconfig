@@ -1,0 +1,20 @@
+[user]
+	name = MichaelCho
+	email = zuow11@gmail.com
+[color]
+	ui = true   
+[color "diff"]
+	meta = bold
+[core]
+	autocrlf = input
+	editor = vim
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --color
+    last = log -1 HEAD
+	type = cat-file
+	dump = cat-file
+	mg = merge
