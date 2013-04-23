@@ -1,0 +1,12 @@
+[google64]
+name=Google - x86_64
+baseurl=http://dl.google.com/linux/rpm/stable/x86_64
+enable=0
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=0
+gpgcheck=1
