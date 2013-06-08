@@ -14,8 +14,9 @@
 	ci = commit
 	co = checkout
 	br = branch
+    st = status
+	mg = merge
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --color
     last = log -1 HEAD
-	type = cat-file
-	dump = cat-file
-	mg = merge
+	type = cat-file -t
+	dump = cat-file -p
