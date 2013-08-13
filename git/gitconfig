@@ -2,21 +2,28 @@
 	name = MichaelCho
 	email = zuow11@gmail.com
 [color]
-	ui = true   
-[color "diff"]
-	meta = bold
+	ui = true
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
 [core]
 	autocrlf = input
 	editor = vim
 	pager = less -r
+	trustctime = false
+    filemode = false
 [alias]
 	st = status
 	ci = commit
 	co = checkout
 	br = branch
     st = status
+    sr = show-ref
 	mg = merge
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --color
     last = log -1 HEAD
 	type = cat-file -t
 	dump = cat-file -p
+	cm = "!sh -c \"br_name=`git symbolic-ref HEAD|sed s#refs/heads/##`; git commit -em \\\"[\\${br_name}] \\\"\""
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%x09%C(yellow)%d%Creset %C(cyan)[%an]%Creset %x09 %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
