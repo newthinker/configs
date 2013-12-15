@@ -27,3 +27,11 @@
 	dump = cat-file -p
 	cm = "!sh -c \"br_name=`git symbolic-ref HEAD|sed s#refs/heads/##`; git commit -em \\\"[\\${br_name}] \\\"\""
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%x09%C(yellow)%d%Creset %C(cyan)[%an]%Creset %x09 %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[mergetool "kdiff3"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3

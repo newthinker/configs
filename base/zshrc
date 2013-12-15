@@ -54,3 +54,10 @@ export EC2_HOME=/home/michael/Soft/aws/ec2-api-tools-1.6.9.0
 export JAVA_HOME=/opt/jdk1.7.0_25
 export CLASS_PATH=/opt/jdk1.7.0_25/lib
 export PATH=$PATH:/opt/jdk1.7.0_25/bin
+
+export GOROOT=~/soft/go
+export GOARCH=amd64
+export GOOS=darwin
+export GOTOOLS=$GOROOT/pkg/tool/
+export GOPATH=~/workspace/mygo:~/workspace/mygo/src/github.com/newthinker/aws-api
+export PATH=$PATH:$GOROOT/bin:$GOROOT/pkg/tool/darwin_amd64:~/workspace/mygo/bin
