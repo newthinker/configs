@@ -47,17 +47,31 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+export AWS_ACCESS_KEY=AKIAJUQBGX5Y7HGQHLHQ
+export AWS_SECRET_KEY=+jffJ1xIV+uBO8lKyEWOGdQFZJ7v8KKdvTdc3vtg
+
 export AWS_AUTO_SCALING_HOME=/home/michael/Soft/aws/AutoScaling-1.0.61.2
 export AWS_CREDENTIAL_FILE=/home/michael/Soft/aws/credential-new.txt
 export EC2_HOME=/home/michael/Soft/aws/ec2-api-tools-1.6.9.0
+export AWS_CLOUDWATCH_HOME=/home/michael/Soft/aws/CloudWatch-1.0.13.4
 
 export JAVA_HOME=/opt/jdk1.7.0_25
 export CLASS_PATH=/opt/jdk1.7.0_25/lib
 export PATH=$PATH:/opt/jdk1.7.0_25/bin
 
+# golang for linux
 export GOROOT=~/soft/go
 export GOARCH=amd64
 export GOOS=darwin
 export GOTOOLS=$GOROOT/pkg/tool/
 export GOPATH=~/workspace/mygo:~/workspace/mygo/src/github.com/newthinker/aws-api
 export PATH=$PATH:$GOROOT/bin:$GOROOT/pkg/tool/darwin_amd64:~/workspace/mygo/bin
+
+# golang for mac os
+export GOROOT=~/Soft/go
+export GOARCH=amd64
+export GOOS=linux
+export GOBIN=$GOROOT/bin/
+export GOTOOLS=$GOROOT/pkg/tool/
+export GOPATH=~/workspace/go:~/workspace/go/src/github.com/newthinker/aws-api
+export PATH=$PATH:$GOBIN:$GOTOOLS:$GOROOT/pkg/tool/linux_amd64
