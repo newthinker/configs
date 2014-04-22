@@ -29,3 +29,15 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%x09%C(yellow)%d%Creset %C(cyan)[%an]%Creset %x09 %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 [push]
     default = current
+[merge]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    path = /usr/bin/kdiff3
+    keepBackup = false
+    trustExitCode = false
+[diff]
+    tool = kdiff3
+[difftool "kdiff3"]
+    path = /usr/bin/kdiff3
+    keepBackup = false
+    trustExitCode = false
