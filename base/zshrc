@@ -75,3 +75,10 @@ export GOBIN=$GOROOT/bin/
 export GOTOOLS=$GOROOT/pkg/tool/
 export GOPATH=~/workspace/go:~/workspace/go/src/github.com/newthinker/aws-api
 export PATH=$PATH:$GOBIN:$GOTOOLS:$GOROOT/pkg/tool/linux_amd64
+
+# python path
+export PYTHONPATH=$PYTHONPATH:~/workspace/madeira/source/api/Source
+
+# java
+export JAVA_HOME=/usr/local/java/jdk1.7.0_60
+export PATH=$PATH:$JAVA_HOME/bin
