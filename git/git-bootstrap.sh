@@ -65,6 +65,17 @@ function setup_centos(){
   echo
 
 
+  if [ "${OSVERSION}" == "7" ]
+  then
+    rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+  elif [ "${OSVERSION}" == "6" ]
+  then
+    rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+  elif [ "${OSVERSION}" == "5" ]
+  then
+    rpm -ivh http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+  fi
+
   INSTALL_METHOD="yum"  #yum|rpm
 
   if [ "${INSTALL_METHOD}" == "yum" ]
@@ -72,11 +83,14 @@ function setup_centos(){
    #yum
 
     #google is too slow,so disable it
-    sed -i -e 's/enabled=1/enabled=0/' /etc/yum.repos.d/google*
+    if [ `ls /etc/yum.repos.d/google* | wc -l` -ne 0 ]
+    then
+      sed -i -e 's/enabled=1/enabled=0/' /etc/yum.repos.d/google*
+    fi
 
     #yum clean all
     echo "Start Install packages by yum..."
-    yum -y  -q install perl-DBI perl-Git bash-completion util-linux git-all gitk tig git-flow
+    yum -y  -q install perl-DBI perl-Git bash-completion util-linux git-all gitk tig gitflow
 
     echo
     echo "Finish Install packages by yum!"
@@ -155,6 +169,7 @@ function setup_ubuntu(){
   echo "Step 2. Now will download and install git & gitk & tig"
   echo
 
+  apt-get curl
   apt-get install git git-core git-man git-arch git-extras git-flow git-gui git-review git-sh git-stuff
 
 }
@@ -295,6 +310,8 @@ function setup_macosx(){
     echo
     echo "run the following command:"
     echo 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+    echo ''
+    echo 'please download && install "Command Line Tools for Xcode" from https://developer.apple.com/downloads/'
     echo
     quit "Please install Homebrew, then re-execute this script!"
   fi
@@ -382,7 +399,8 @@ function main(){
    #echo "Your OS : ${DISTRIBUTOR} ${OSVERSION}.x ${HOSTTYPE} "
 
     ALLOS=`cat /etc/*release | head -n 1`
-    DISTRIBUTOR=`cat /etc/*release | head -n 1 | cut -d '=' -f 2| cut -d ' ' -f 1`
+    #DISTRIBUTOR=`cat /etc/*release | head -n 1 | cut -d '=' -f 2| cut -d ' ' -f 1`
+    DISTRIBUTOR=`cat /etc/issue | head -n 1 | awk '{print $1}'`
     OSVERSION=''
 
     echo "Your OS: ${ALLOS}"
@@ -390,8 +408,9 @@ function main(){
     if [ "${DISTRIBUTOR}" == "CentOS" ]
     then
       echo "CentOS"
-      OSVERSION=`lsb_release -a | grep Release | awk 'BEGIN{FS="[:. \t]"}{print $3}' `
-      if [ ${OSVERSION} -ne 5 -a ${OSVERSION} -ne 6 ]
+      #OSVERSION=`cat /etc/*release | head -n 1 | cut -d '=' -f 2| cut -d ' ' -f 3  | awk 'BEGIN{FS="[:. \t]"}{print $1}' `
+      OSVERSION=`cat /etc/issue | head -n 1 | awk '{split($3,ver,"."); print ver[1]}'`
+      if [ "${OSVERSION}" != "5" -a "${OSVERSION}" != "6" -a "${OSVERSION}" != "7" ]
       then
           quit "Only support CentOS 5.x and CentOS 6.x,Quit!"
       fi
@@ -402,7 +421,7 @@ function main(){
     then
       echo "Ubuntu"
       OSVERSION=`lsb_release -a | grep Release | awk 'BEGIN{FS="[:. \t]"}{print $3}' `
-      if [ ${OSVERSION} -ne 12 -a ${OSVERSION} -ne 11 ]
+      if [ "${OSVERSION}" != "13" -a "${OSVERSION}" != "12" -a "${OSVERSION}" != "11" ]
       then
                 quit "Only support Ubuntu 11.x and Ubuntu 12.x,Quit!"
       fi
@@ -487,14 +506,14 @@ function main(){
   echo
 
   #wget --no-check-certificate -q -O - https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh |  bash
-  curl -s https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh -o gitflow-installer.sh | bash
-  if [ -f gitflow-installer.sh ]
-  then
-    chmod 755 gitflow-installer.sh
-    ./gitflow-installer.sh
-  else
-    quit "Download git-flow failed,quit"
-  fi
+  #curl -s https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh -o gitflow-installer.sh | bash
+  #if [ -f gitflow-installer.sh ]
+  #then
+  #  chmod 755 gitflow-installer.sh
+  #  ./gitflow-installer.sh
+  #else
+  #  quit "Download git-flow failed,quit"
+  #fi
 
   if [ "${UNAME}" == "CYGWIN" ]
   then
@@ -555,7 +574,7 @@ function main(){
   echo "Step 6. Now will modify environment to support bash auto-completion..."
 
 
-  if [ "${UNAME}" == "Linux" ]
+  if [ "${UNAME}" == "Linux" -a "${DISTRIBUTOR}" != "Ubuntu"  ]
   then
     echo "Install auto-completion for Linux..."
 
@@ -628,6 +647,7 @@ function main(){
   git config --global alias.sr 'show-ref'
   git config --global alias.cm '!sh -c "br_name=`git symbolic-ref HEAD|sed s#refs/heads/##`; git commit -em \"[\${br_name}] \""'
   git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%x09%C(yellow)%d%Creset %C(cyan)[%an]%Creset %x09 %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+  git config --global push.default current
 
 
   echo ">>Set global config OK, you can use 'git lg' to show log"
