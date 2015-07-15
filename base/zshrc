@@ -67,9 +67,9 @@ if [[ "$unamestr" == 'Linux' ]]; then
     export GOPATH=~/workspace/go
     export PATH=$PATH:$GOBIN:$GOTOOLS:$GOROOT/pkg/tool/linux_amd64
 
-else
+elif [[ "$unamestr" == 'Darwin' ]]; then
     # golang for mac os
-    export GOROOT=~/soft/go
+    export GOROOT=/usr/local/go
     export GOARCH=amd64
     export GOOS=darwin
     export GOTOOLS=$GOROOT/pkg/tool/
