@@ -49,3 +49,5 @@
     path = /usr/bin/kdiff3
     keepBackup = false
     trustExitCode = false
+[http]
+	proxy = 127.0.0.1:8080
