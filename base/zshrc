@@ -41,11 +41,15 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler osx autojumps mvn)
+plugins=(git bundler osx autojumps mvn git-flow-completion)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# language
+export LANG='UTC-8'
+export LC_ALL='en_US.UTF-8'
 
 # alias
 alias cls='clear'
@@ -89,6 +93,10 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     export GOTOOLS=$GOROOT/pkg/tool/
     export GOPATH=~/workspace/go
     export PATH=$PATH:$GOROOT/bin:$GOROOT/pkg/tool/darwin_amd64:~/workspace/go/bin
+    export GO111MODULE=on
+    #export GOPROXY=https://gocenter.io
+    export GOPROXY=https://goproxy.io,direct
+    export GOPRIVATE=git.hualala.com/devops/go-common
 
     # java
     export JAVA_6_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
@@ -100,7 +108,25 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     # virtualenvwrapper settings
     WORKON_HOME=/Users/zuowei/workspace/virtualenv
     source /usr/local/bin/virtualenvwrapper.sh
+
+    # mysql
+    export PATH=$PATH:/usr/local/sbin:/usr/local/mysql/bin
+
+    # add ssh key
+    keychain ~/.ssh/id_rsa 
+    source  ~/.keychain/michael_mbp2016-sh
+
+    # flamegraph
+    export PATH=$PATH:/Users/zuowei/workspace/go/src/github.com/brendangregg/FlameGraph
 fi
 
 # python path
-export PYTHONPATH=$PYTHONPATH:~/workspace/madeira/source/api/Source:~/workspace/madeira/source/cloudfielder-api/Source:~/workspace/oneapm/OneRASP-api/Source
+source /usr/local/bin/activate.sh
+
+# etcd
+export ETCDCTL_API=3
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
